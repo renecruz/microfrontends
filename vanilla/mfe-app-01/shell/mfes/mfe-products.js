@@ -20,7 +20,7 @@ class MfeProducts extends HTMLElement {
         <li>
           <div>
             <div class="name">${p.name}</div>
-            <div class="muted">$${p.price}</div>
+            <div class="price">$${p.price}</div>
           </div>
           <button data-id="${p.id}">Agregar</button>
         </li>
@@ -30,15 +30,74 @@ class MfeProducts extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
       <style>
-        .muted { color:#666; font-size: 14px; }
-        ul { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
-        li { display:flex; align-items:center; justify-content:space-between; border:1px solid #eee; padding:10px; border-radius:10px; }
-        .name { font-weight: 600; }
-        button { border:1px solid #ddd; background:white; padding:8px 10px; border-radius:10px; cursor:pointer; }
-        button:hover { background:#f7f7f7; }
+        :host {
+          display: block;
+        }
+        .info {
+          color: #64748b;
+          font-size: 13px;
+          margin-bottom: 16px;
+          padding: 10px 14px;
+          background: #eff6ff;
+          border-radius: 8px;
+          border-left: 3px solid #2563eb;
+        }
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: grid;
+          gap: 12px;
+        }
+        li {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          padding: 16px;
+          border-radius: 12px;
+          transition: all 0.2s ease;
+        }
+        li:hover {
+          border-color: #bfdbfe;
+          background: #fff;
+          box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+        }
+        .name {
+          font-weight: 600;
+          color: #1e293b;
+          font-size: 15px;
+        }
+        .price {
+          color: #2563eb;
+          font-size: 14px;
+          font-weight: 600;
+          margin-top: 4px;
+        }
+        button {
+          border: none;
+          background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+          color: #fff;
+          padding: 10px 18px;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 13px;
+          transition: all 0.2s ease;
+          box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        }
+        button:hover {
+          background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+          box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+          transform: translateY(-1px);
+        }
+        button:active {
+          transform: translateY(0);
+        }
       </style>
 
-      <div class="muted">Este listado lo renderiza el microfrontend Products.</div>
+      <div class="info">Este listado lo renderiza el microfrontend Products.</div>
       <ul>${items}</ul>
     `;
 
